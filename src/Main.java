@@ -17,10 +17,14 @@ public class Main {
 
         if(nombre.equals("C")){
             Cliente c = new Cliente();
-            c.Start();
+            Thread threadCliente = new Thread(c);
+            threadCliente.start();
+            c.Send("");
         }else{
             Servidor s = new Servidor();
-            s.Start();
+            Thread threadServidor = new Thread(s);
+            threadServidor.start();
+            s.Send("");
         }
     }
 }

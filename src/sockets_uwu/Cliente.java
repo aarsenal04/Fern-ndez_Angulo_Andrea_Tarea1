@@ -1,14 +1,9 @@
 package sockets_uwu;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.*;
 import java.net.Socket;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-public class Cliente {
+public class Cliente implements Runnable{
 
     private Socket cliente;
     private DataOutputStream out;
@@ -16,29 +11,52 @@ public class Cliente {
     private int puerto = 5000;
     private String host = "localhost";
 
-    public void Start(){
-
-        try{
-
+    public Cliente(){
+        try {
             this.cliente = new Socket(this.host,this.puerto); //Creo el cliente
             this.in = new DataInputStream(cliente.getInputStream()); //objeto para recibir datos
             this.out = new DataOutputStream(cliente.getOutputStream()); //objeto para enviar
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            while (true) {
+    }
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); //Ya tenemos el "lector"
+    @Override
+    public void run() {
 
-                System.out.println("Digite los valores de la forma: V#P#I");//Se pide un dato al usuario
+        while (true){
+            try {
+                String msg = in.readUTF();
+                String valores[] = msg.split("#");
 
-                String nombre = br.readLine(); //Se lee el nombre con readLine() que retorna un String con el dato
+                if (valores[0].equals("C")) {
+                    int valor = Integer.parseInt(valores[1]);
+                    int peso = Integer.parseInt(valores[2]);
+                    int impuesto = Integer.parseInt(valores[3]);
+                    double monto = (valor*(impuesto/100))+(peso*0.15);
+                    this.Send("M#"+String.valueOf(monto));
+                } else {
+                    //Aquí debe ir la llamada al método donde se mostraría el valo en la GUI.
+                    System.out.println(valores[1]);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
 
-                this.out.writeUTF(nombre); //Envío datos --> "5#1#6"
-
-                String msg = in.readUTF(); //recibo datos
-
-                System.out.println(msg);
             }
-        } catch (Exception e) {
+
+        }
+
+    }
+
+    public void Send(String msg){
+
+        try {
+            while (true){
+
+                this.out.writeUTF(msg); //Envio datos --> "5#1#6"
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
