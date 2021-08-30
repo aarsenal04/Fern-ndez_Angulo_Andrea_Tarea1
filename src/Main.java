@@ -19,12 +19,12 @@ public class Main {
             Cliente c = new Cliente();
             Thread threadCliente = new Thread(c);
             threadCliente.start();
-            c.Send("");
+            c.Send("NULL#NULL#NULL#NULL");
         }else{
             Servidor s = new Servidor();
             Thread threadServidor = new Thread(s);
             threadServidor.start();
-            s.Send("");
+            s.Send("NULL#NULL#NULL#NULL");
         }
 
     }

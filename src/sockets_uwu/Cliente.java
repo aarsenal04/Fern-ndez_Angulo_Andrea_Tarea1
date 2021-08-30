@@ -45,18 +45,22 @@ public class Cliente implements Runnable{
                 e.printStackTrace();
 
             }
+
         }
+
     }
 
     public void Send(String msg){
 
         try {
-            while (true){
 
-                this.out.writeUTF(msg); //Envio datos --> "5#1#6"
-            }
+            this.out.writeUTF(msg); //Envio datos --> "5#1#6"
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
     }
 }

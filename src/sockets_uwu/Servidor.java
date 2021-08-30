@@ -31,6 +31,7 @@ public class Servidor implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -57,14 +58,18 @@ public class Servidor implements Runnable{
                 }
 
             }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void Send(String msg) throws IOException {
-        while (true){
 
-            this.out.writeUTF(msg); //Envio datos --> "5#1#6"
-        }
+    public void Send(String msg) throws IOException {
+
+
+        this.out.writeUTF(msg); //Envio datos --> "5#1#6"
+
     }
+
 }
