@@ -1,18 +1,11 @@
-package Gui;
+package gui;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-
-/**
-
- * La interfaz se realizó con Java Swing.
- * Esta clase se define como {@link selecter} con sus respectivos sockets y funcionalidades.
- * Como se menciona en el Main, el selecter es la primer ventana que aparece.
- * Contiene los botones de Cliente y Servidor
-
- */
+import gui.AppDescuento;
 
 public class selecter extends JFrame{
 
@@ -25,25 +18,25 @@ public class selecter extends JFrame{
         JFrame app = new JFrame("Selección");
 
         app.setContentPane(Canva);
-        app.setSize(500,500); // tamaño de la ventana axh
+        app.setSize(500,550);
         app.setTitle("Ventana Servidor y Cliente");
         app.setVisible(true);
-        app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // para poder cerrar la ventana
+        app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        clienteButton.addActionListener(new ActionListener() { // capta la acción
+        clienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.setVisible(false);
                 app.dispose();
-                AppDescuento app = new AppDescuento(0,"Cliente"); // botón de cliente
+                AppDescuento app = new AppDescuento(0,"Cliente");
             }
         });
-        servidorButton.addActionListener(new ActionListener() { // capta la acción
+        servidorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.setVisible(false);
                 app.dispose();
-                AppDescuento app = new AppDescuento(1,"Servidor"); // botón de servidor
+                AppDescuento app = new AppDescuento(1,"Servidor");;
             }
         });
     }
