@@ -3,6 +3,7 @@ package sockets_uwu;
 import java.io.*;
 import java.net.Socket;
 
+
 public class Cliente implements Runnable{
 
     private Socket cliente;
@@ -44,9 +45,7 @@ public class Cliente implements Runnable{
                 e.printStackTrace();
 
             }
-
         }
-
     }
 
     public void Send(String msg){

@@ -31,7 +31,6 @@ public class Servidor implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -43,6 +42,7 @@ public class Servidor implements Runnable{
                 this.msg = in.readUTF(); //Lee el dato que recibe
 
                 String valores[] = this.msg.split("#");
+
 
                 if (valores[0].equals("C")) {
                     System.out.println(valores[0]);
@@ -57,14 +57,13 @@ public class Servidor implements Runnable{
                 }
 
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     public void Send(String msg) throws IOException {
         while (true){
+
             this.out.writeUTF(msg); //Envio datos --> "5#1#6"
         }
     }
