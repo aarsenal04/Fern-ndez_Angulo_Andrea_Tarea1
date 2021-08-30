@@ -8,6 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+
+ * La interfaz se realizó con Java Swing.
+ * Esta clase se define como {@link AppDescuento} con sus respectivos sockets y funcionalidades.
+ * Como se menciona en el Main, esta ventana surge de la acción en los botones de cliente y servidor.
+ * Contiene las entradas de texto para valor, peso y tax (impuesto).
+ * Contiene la entrada del chat por donde se intercambia la información requerida.
+
+ */
+
 public class AppDescuento extends JFrame{
 
     private JPanel VentanaC;

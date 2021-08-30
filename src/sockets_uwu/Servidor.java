@@ -7,6 +7,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.*;
 
+/**
+
+ * Esta clase se define como  {@link Servidor} con sus respectivos sockets y funcionalidades
+
+ */
+
 public class Servidor implements Runnable{
 
     private final int PUERTO = 5000;

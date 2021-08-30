@@ -4,6 +4,12 @@ import java.io.*;
 import java.net.Socket;
 import javax.swing.*;
 
+/**
+
+ * Esta clase se define como  {@link Cliente} con sus respectivos sockets y funcionalidades
+
+ */
+
 public class Cliente implements Runnable{
 
     private Socket cliente;

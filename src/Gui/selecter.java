@@ -7,6 +7,15 @@ import java.io.IOException;
 
 import gui.AppDescuento;
 
+/**
+
+ * La interfaz se realizó con Java Swing.
+ * Esta clase se define como {@link selecter} con sus respectivos sockets y funcionalidades.
+ * Como se menciona en el Main, el selecter es la primer ventana que aparece.
+ * Contiene los botones de Cliente y Servidor
+
+ */
+
 public class selecter extends JFrame{
 
     private JButton clienteButton;
