@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import javax.swing.*;
 
 public class Servidor implements Runnable{
 
@@ -15,8 +16,11 @@ public class Servidor implements Runnable{
     public Socket socket;
     public DataOutputStream out;
     public DataInputStream in;
+    public JTextPane t;
 
-    public Servidor(){
+    public Servidor(JTextPane aText){
+
+        t = aText;
 
         try {
             ss = new ServerSocket(this.PUERTO); //Crea el server socket
@@ -46,19 +50,24 @@ public class Servidor implements Runnable{
 
 
                 if (valores[0].equals("C")) {
-                    System.out.println(valores[0]);
+
+                    t.setText(t.getText() + "\n" + "[Client] The value are: " + valores[1] + " " + valores[2] + " " + valores[3]);
+
                     int valor = Integer.parseInt(valores[1]);
                     int peso = Integer.parseInt(valores[2]);
                     int impuesto = Integer.parseInt(valores[3]);
                     double monto = (valor*(impuesto/100))+(peso*0.15);
+                    monto = (int)monto;
                     this.Send("M#"+String.valueOf(monto));
+
+                    t.setText(t.getText() + "\n" + "[Server] The value is: " + String.valueOf(monto));
+
                 } else {
-                    //Aquí debe ir la llamada al método donde se mostraría el valo en la GUI.
+                    t.setText(t.getText() + "\n" + "[Client] The value is: " + valores[1]);
                     System.out.println(valores[1]);
                 }
 
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,7 +75,6 @@ public class Servidor implements Runnable{
     }
 
     public void Send(String msg) throws IOException {
-
 
         this.out.writeUTF(msg); //Envio datos --> "5#1#6"
 

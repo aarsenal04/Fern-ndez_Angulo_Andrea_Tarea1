@@ -1,16 +1,11 @@
-import sockets_uwu.Cliente;
-import sockets_uwu.Servidor;
-import Gui.AppDescuento;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import gui.selecter;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
 
-        AppDescuento app = new AppDescuento();
+        selecter selec = new selecter();
 
     }
 
