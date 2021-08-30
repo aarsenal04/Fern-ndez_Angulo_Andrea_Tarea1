@@ -4,12 +4,19 @@ import java.io.*;
 import java.net.Socket;
 import javax.swing.*;
 
+
+/**
+
+ * Esta clase se define como  {@link Cliente} con sus respectivos sockets y funcionalidades
+
+ */
+
 public class Cliente implements Runnable{
 
     private Socket cliente;
     private DataOutputStream out;
     private DataInputStream in;
-    private int puerto = 5000;
+    private int puerto = 5000; // Puerto de conexión para los Sockets
     private String host = "localhost";
     private JTextPane t;
 
