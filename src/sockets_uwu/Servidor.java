@@ -7,9 +7,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.*;
 
+
+/**
+
+ * Esta clase se define como  {@link Servidor} con sus respectivos sockets y funcionalidades
+
+ */
+
 public class Servidor implements Runnable{
 
-    private final int PUERTO = 5000;
+    private final int PUERTO = 5000; //Puerto para comunicarse con el cliente
 
     public String msg;
     public ServerSocket ss;
@@ -32,7 +39,7 @@ public class Servidor implements Runnable{
             out = new DataOutputStream(this.socket.getOutputStream()); //Para enviar datos
             in = new DataInputStream(this.socket.getInputStream()); // Para recibir datos
 
-        } catch (IOException e) {
+        } catch (IOException e) { //por si ocurre algún error
             e.printStackTrace();
         }
 
@@ -46,21 +53,21 @@ public class Servidor implements Runnable{
 
                 this.msg = in.readUTF(); //Lee el dato que recibe
 
-                String valores[] = this.msg.split("#");
+                String valores[] = this.msg.split("#"); // para separar los valores por calcular
 
 
                 if (valores[0].equals("C")) {
 
-                    t.setText(t.getText() + "\n" + "[Client] The value are: " + valores[1] + " " + valores[2] + " " + valores[3]);
+                    t.setText(t.getText() + "\n" + "[Client] The value are: " + valores[1] + " " + valores[2] + " " + valores[3]); //quien lo envía y los valores que envía
 
-                    int valor = Integer.parseInt(valores[1]);
-                    int peso = Integer.parseInt(valores[2]);
-                    int impuesto = Integer.parseInt(valores[3]);
-                    double monto = (valor*(impuesto/100))+(peso*0.15);
-                    monto = (int)monto;
-                    this.Send("M#"+String.valueOf(monto));
+                    int valor = Integer.parseInt(valores[1]); // el valor que se escribe de primero
+                    int peso = Integer.parseInt(valores[2]); // el peso, que se escribe de segundo
+                    int impuesto = Integer.parseInt(valores[3]); // el impuesto (tax) que es escribe de tercero
+                    double monto = (valor*(impuesto/100))+(peso*0.15); // ecuación que calcula el monto requerido
+                    monto = (int)monto; //para que el monto sea entero
+                    this.Send("M#"+String.valueOf(monto)); //mensaje que devuelve el monto
 
-                    t.setText(t.getText() + "\n" + "[Server] The value is: " + String.valueOf(monto));
+                    t.setText(t.getText() + "\n" + "[Server] The value is: " + String.valueOf(monto)); //manera en la que llega el mensaje desde el servidor
 
                 } else {
                     t.setText(t.getText() + "\n" + "[Client] The value is: " + valores[1]);
@@ -69,7 +76,7 @@ public class Servidor implements Runnable{
 
             }
 
-        } catch (IOException e) {
+        } catch (IOException e) { // por si ocurre algún error
             e.printStackTrace();
         }
     }

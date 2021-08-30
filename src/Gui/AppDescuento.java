@@ -1,4 +1,4 @@
-package gui;
+package Gui;
 
 import sockets_uwu.Cliente;
 import sockets_uwu.Servidor;

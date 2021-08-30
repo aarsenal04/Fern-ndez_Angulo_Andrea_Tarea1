@@ -16,7 +16,7 @@ public class Cliente implements Runnable{
     private Socket cliente;
     private DataOutputStream out;
     private DataInputStream in;
-    private int puerto = 5000; // Puerto de conexión para los Sockets
+    private int puerto = 5000; // Puerto de conexión con el servidor
     private String host = "localhost";
     private JTextPane t;
 
@@ -38,26 +38,26 @@ public class Cliente implements Runnable{
         while (true){
             try {
                 String msg = in.readUTF();
-                String valores[] = msg.split("#");
+                String valores[] = msg.split("#"); // para separar los valores por utilizar
 
                 if (valores[0].equals("C")) {
 
-                    t.setText(t.getText() + "\n" + "[Server] The value are: " + valores[1] + " " + valores[2] + " " + valores[3]);
+                    t.setText(t.getText() + "\n" + "[Server] The value are: " + valores[1] + " " + valores[2] + " " + valores[3]); //quien lo envía y los valores que envía
 
-                    int valor = Integer.parseInt(valores[1]);
-                    int peso = Integer.parseInt(valores[2]);
-                    int impuesto = Integer.parseInt(valores[3]);
-                    double monto = (valor*(impuesto/100))+(peso*0.15);
-                    monto = (int)monto;
-                    this.Send("M#"+String.valueOf(monto));
+                    int valor = Integer.parseInt(valores[1]); // el valor que se escribe de primero
+                    int peso = Integer.parseInt(valores[2]); // el peso, que se escribe de segundo
+                    int impuesto = Integer.parseInt(valores[3]); // el impuesto (tax) que es escribe de tercero
+                    double monto = (valor*(impuesto/100))+(peso*0.15); // ecuación que calcula el monto requerido
+                    monto = (int)monto; //para que el monto sea entero
+                    this.Send("M#"+String.valueOf(monto)); //mensaje que devuelve el monto
 
-                    t.setText(t.getText() + "\n" + "[Client] The value is: " + String.valueOf(monto));
+                    t.setText(t.getText() + "\n" + "[Client] The value is: " + String.valueOf(monto)); //manera en la que llega el mensaje desde el cliente
 
                 } else {
                     t.setText(t.getText() + "\n" + "[Server] The value is: " + valores[1]);
                     System.out.println(valores[1]);
                 }
-            } catch (IOException e) {
+            } catch (IOException e) { // por si ocurre algún error
                 e.printStackTrace();
 
             }
